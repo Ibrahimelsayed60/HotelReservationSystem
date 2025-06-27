@@ -1,0 +1,14 @@
+﻿using MediatR;
+using Room.Rooms.Models;
+using Shared.DDD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Room.Rooms.Events
+{
+    public record RoomPriceChangedEvent(Models.Rooms room):IDomainEvent;
+    
+}
