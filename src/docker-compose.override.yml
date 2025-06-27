@@ -1,0 +1,11 @@
+services:
+  hoteldb:
+    container_name: hoteldb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    restart: always
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_hoteldb:/var/opt/mssql

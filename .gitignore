@@ -404,3 +404,15 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Ignore all Docker-related files
+Dockerfile*
+docker-compose*
+*.docker
+*.env
+.dockerignore
+*.vhdx
+
+# But NOT YAML files
+!*.yaml
+!*.yml
