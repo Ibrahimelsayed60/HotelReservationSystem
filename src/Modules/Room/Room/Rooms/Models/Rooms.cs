@@ -15,7 +15,7 @@ namespace Room.Rooms.Models
 
         public string Type { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string Description { get; set; }
 
@@ -28,7 +28,7 @@ namespace Room.Rooms.Models
         public List<RoomFacilities> RoomFacilities { get; set; }
 
 
-        public static Rooms CreateRoom(Guid Id, string name, string type, decimal price, string description, int capacity, bool isAvailable)
+        public static Rooms CreateRoom(Guid Id, string name, string type, double price, string description, int capacity, bool isAvailable)
         {
             ArgumentException.ThrowIfNullOrEmpty(name);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
@@ -49,7 +49,7 @@ namespace Room.Rooms.Models
             return room;
         }
 
-        public void UpdateRoom(string name, string type, decimal price, string description, int capacity, bool isAvailable)
+        public void UpdateRoom(string name, string type, double price, string description, int capacity, bool isAvailable)
         {
             ArgumentException.ThrowIfNullOrEmpty(name);
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);

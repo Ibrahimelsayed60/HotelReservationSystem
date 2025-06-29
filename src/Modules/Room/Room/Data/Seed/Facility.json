@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101",
+    "Name": "Wi-Fi"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70102",
+    "Name": "Air Conditioning"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70103",
+    "Name": "Flat Screen TV"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70104",
+    "Name": "Mini Bar"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70105",
+    "Name": "Room Service"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70106",
+    "Name": "Private Bathroom"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70107",
+    "Name": "Balcony"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70108",
+    "Name": "Coffee Maker"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70109",
+    "Name": "Hair Dryer"
+  },
+  {
+    "Id": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70110",
+    "Name": "Safe Deposit Box"
+  }
+]

@@ -2,7 +2,7 @@ services:
   hoteldb:
     container_name: hoteldb
     environment:
-      - ACCEPT_EULA=Y
+      - ACCEPT_EULA="1"
       - SA_PASSWORD=YourStrong!Passw0rd
     restart: always
     ports:

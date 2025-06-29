@@ -1,0 +1,38 @@
+[
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35001", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35001", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70102" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35001", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70103" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35002", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35002", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70106" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35003", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35003", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70103" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35003", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70105" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35003", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70107" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35004", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70102" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35004", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70105" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35004", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70110" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35005", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35005", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70104" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35005", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70108" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35006", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35006", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70106" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35007", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35007", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70107" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35007", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70110" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35008", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70101" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35008", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70106" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35009", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70109" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35009", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70110" },
+
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35010", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70102" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35010", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70103" },
+  { "RoomId": "9dced1c3-fec1-4a92-bbb1-df2449e35010", "FacilityId": "a1e9a4e1-03cf-4d43-9e7c-f1c1d2e70108" }
+]

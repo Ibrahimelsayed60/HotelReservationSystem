@@ -1,0 +1,102 @@
+[
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35001",
+    "Name": "Deluxe Room 101",
+    "Type": "Deluxe",
+    "Price": 150.00,
+    "Description": "Spacious deluxe room with a sea view and king-sized bed.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35002",
+    "Name": "Standard Room 102",
+    "Type": "Standard",
+    "Price": 100.00,
+    "Description": "Cozy standard room with garden view.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35003",
+    "Name": "Suite Room 103",
+    "Type": "Suite",
+    "Price": 220.00,
+    "Description": "Large suite with a living room and balcony.",
+    "Capacity": 4,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35004",
+    "Name": "Family Room 104",
+    "Type": "Family",
+    "Price": 180.00,
+    "Description": "Comfortable room for families with two queen beds.",
+    "Capacity": 4,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35005",
+    "Name": "Executive Room 105",
+    "Type": "Executive",
+    "Price": 200.00,
+    "Description": "High-floor executive room with workspace.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35006",
+    "Name": "Budget Room 106",
+    "Type": "Budget",
+    "Price": 70.00,
+    "Description": "Affordable room with basic amenities.",
+    "Capacity": 1,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35007",
+    "Name": "Penthouse Suite 107",
+    "Type": "Suite",
+    "Price": 350.00,
+    "Description": "Luxury penthouse with panoramic city view.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35008",
+    "Name": "Twin Room 108",
+    "Type": "Twin",
+    "Price": 110.00,
+    "Description": "Room with two twin beds and shared bathroom.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35009",
+    "Name": "Accessible Room 109",
+    "Type": "Accessible",
+    "Price": 130.00,
+    "Description": "ADA-compliant room with accessible facilities.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  },
+  {
+    "Id": "9dced1c3-fec1-4a92-bbb1-df2449e35010",
+    "Name": "Loft Room 110",
+    "Type": "Loft",
+    "Price": 160.00,
+    "Description": "Stylish loft room with modern interior.",
+    "Capacity": 2,
+    "IsAvailable": true,
+    "isDeleted": false
+  }
+]
