@@ -33,7 +33,11 @@ namespace Room
             services.AddDbContext<RoomDbContext>((sp, options) =>
             {
                 options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-                options.UseSqlServer(connectionString);
+                //options.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure(
+                //                maxRetryCount: 5,
+                //                maxRetryDelay: TimeSpan.FromSeconds(10),
+                //                errorNumbersToAdd: null));
+                options.UseNpgsql(connectionString);
             });
 
             return services;

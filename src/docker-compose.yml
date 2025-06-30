@@ -1,7 +1,12 @@
 services:
-  hoteldb:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: Bootstrapper/Api/Dockerfile
 
+  eshopdb:
+    image: postgres
 
 volumes:
-  mssql_hoteldb:
+  postgres_eshopdb:

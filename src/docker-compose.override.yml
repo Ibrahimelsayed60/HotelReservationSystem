@@ -1,11 +1,24 @@
 services:
-  hoteldb:
-    container_name: hoteldb
+  api:
     environment:
-      - ACCEPT_EULA="1"
-      - SA_PASSWORD=YourStrong!Passw0rd
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  
+  eshopdb:
+    container_name: eshopdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=EShopDb
     restart: always
     ports:
-      - "1433:1433"
+      - "5432:5432"
     volumes:
-      - mssql_hoteldb:/var/opt/mssql
+      - postgres_eshopdb:/var/lib/postgresql/data/
