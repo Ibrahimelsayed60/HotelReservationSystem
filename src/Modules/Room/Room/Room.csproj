@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Seed\" />
+    <Folder Include="Data\DataSeed\" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Room.Data;
+using Shared.Data;
 using Shared.Data.Interceptors;
+using Shared.Data.Seed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,11 +42,15 @@ namespace Room
                 options.UseNpgsql(connectionString);
             });
 
+            services.AddScoped<IDataSeeder, RoomContextSeed>();
+
             return services;
         }
 
         public static IApplicationBuilder UseRoomModule(this IApplicationBuilder app)
         {
+            app.UseMigration<RoomDbContext>();
+
             return app;
         }
 
