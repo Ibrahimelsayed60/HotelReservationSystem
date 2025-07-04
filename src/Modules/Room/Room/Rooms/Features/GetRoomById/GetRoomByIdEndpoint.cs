@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Room.Rooms.Features.GetRoomById
 {
 
-    public record GetRoomByIdResponse(RoomDto Room);
+    public record GetRoomByIdResponse(RoomDto room);
     public class GetRoomByIdEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
@@ -23,7 +23,7 @@ namespace Room.Rooms.Features.GetRoomById
             {
                 var result = await sender.Send(new GetRoomByIdQuery(id));
 
-                var response = result.Adapt<GetRoomByIdResponse>();
+                var response = new GetRoomByIdResponse(result.room);
 
                 return Results.Ok(response);
 

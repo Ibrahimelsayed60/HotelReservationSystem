@@ -13,6 +13,9 @@ namespace Api
             //    .AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderingAssembly);
 
             builder.Services
+                .AddCarterWithAssemblies(typeof(RoomModule).Assembly);
+
+            builder.Services
                 .AddRoomModule(builder.Configuration)
                 .AddUserModule(builder.Configuration)
                 .AddReservationModule(builder.Configuration)
