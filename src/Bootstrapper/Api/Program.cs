@@ -1,3 +1,6 @@
+using Carter;
+using Shared.Extensions;
+
 namespace Api
 {
     public class Program
@@ -5,6 +8,9 @@ namespace Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //builder.Services
+            //    .AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderingAssembly);
 
             builder.Services
                 .AddRoomModule(builder.Configuration)
@@ -17,6 +23,8 @@ namespace Api
                 .AddFeedbackModule(builder.Configuration);
 
             var app = builder.Build();
+
+            app.MapCarter();
 
             app.UseRoomModule()
                 .UseUserModule()

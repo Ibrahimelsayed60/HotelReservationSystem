@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Room.Rooms.Features.GetRoomById
 {
 
-    public record GetProductByIdResponse(RoomDto Room);
+    public record GetRoomByIdResponse(RoomDto Room);
     public class GetRoomByIdEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
@@ -28,8 +28,11 @@ namespace Room.Rooms.Features.GetRoomById
                 return Results.Ok(response);
 
             })
-                
-                ;
+            .WithName("GetRoomById")
+            .Produces<GetRoomByIdResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status404NotFound)
+            .WithSummary("Get Room By Id")
+            .WithDescription("Get Room By Id");
         }
     }
 }
