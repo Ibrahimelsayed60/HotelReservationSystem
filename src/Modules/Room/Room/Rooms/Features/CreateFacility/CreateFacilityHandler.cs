@@ -24,7 +24,7 @@ namespace Room.Rooms.Features.CreateFacility
 
             dbContext.Facilities.Add(facility);
 
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return new CreateFacilityResult(facility.Id);
         }
