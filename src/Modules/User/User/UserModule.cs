@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Data.Interceptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using User.Data;
+using User.Users.Models;
 
 namespace User
 {
@@ -14,6 +20,24 @@ namespace User
 
         public static IServiceCollection AddUserModule(this IServiceCollection services, IConfiguration configuration)
         {
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            //services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            //services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+            services.AddDbContext<UserDbContext>((sp, options) =>
+            {
+                //options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+                options.UseNpgsql(connectionString);
+            });
+
+
+            services.AddIdentity<AppUser, IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders();
+
+
             return services;
         }
 
