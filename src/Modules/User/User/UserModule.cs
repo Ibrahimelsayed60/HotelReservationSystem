@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using User.Data;
 using User.Users.Models;
+using User.Users.Service;
 
 namespace User
 {
@@ -61,6 +62,8 @@ namespace User
                         ClockSkew = TimeSpan.FromDays(double.Parse(configuration["JWT:DurationInDays"]))
                     };
                 });
+
+            services.AddScoped<ITokenService, TokenService>();
 
 
             return services;
