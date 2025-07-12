@@ -1,5 +1,6 @@
 using Carter;
 using Serilog;
+using Shared.Exceptions.Handler;
 using Shared.Extensions;
 
 namespace Api
@@ -13,8 +14,16 @@ namespace Api
             //builder.Services
             //    .AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderingAssembly);
 
+            var roomAssembly = typeof(RoomModule).Assembly;
+            var userAssembly = typeof(UserModule).Assembly;
+            var reservationAssembly = typeof(ReservationModule).Assembly;
+
+
             builder.Services
-                .AddCarterWithAssemblies(typeof(RoomModule).Assembly);
+                .AddCarterWithAssemblies(roomAssembly, userAssembly, reservationAssembly);
+
+            builder.Services
+                .AddMediatRWithAssemblies(roomAssembly, userAssembly, reservationAssembly);
 
             builder.Services
                 .AddRoomModule(builder.Configuration)
@@ -26,11 +35,21 @@ namespace Api
                 .AddNotificationModule(builder.Configuration)
                 .AddFeedbackModule(builder.Configuration);
 
+            builder.Services
+                .AddExceptionHandler<CustomExceptionHandler>();
+
+            builder.Services.AddAuthorization();
+
             var app = builder.Build();
 
             app.MapCarter();
 
             app.UseSerilogRequestLogging();
+
+            app.UseExceptionHandler(options => { });
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseRoomModule()
                 .UseUserModule()

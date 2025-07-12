@@ -27,8 +27,8 @@ namespace User
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            //services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-            //services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
             services.AddDbContext<UserDbContext>((sp, options) =>
             {

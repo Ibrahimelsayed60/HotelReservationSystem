@@ -22,10 +22,10 @@ namespace Room
         public static IServiceCollection AddRoomModule(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddMediatR(config =>
-            {
-                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            });
+            //services.AddMediatR(config =>
+            //{
+            //    config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            //});
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
