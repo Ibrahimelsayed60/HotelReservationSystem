@@ -1,4 +1,5 @@
 using Carter;
+using Serilog;
 using Shared.Extensions;
 
 namespace Api
@@ -28,6 +29,8 @@ namespace Api
             var app = builder.Build();
 
             app.MapCarter();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRoomModule()
                 .UseUserModule()
