@@ -29,6 +29,7 @@
     <ProjectReference Include="..\..\Modules\Reservation\Reservation\Reservation.csproj" />
     <ProjectReference Include="..\..\Modules\Room\Room\Room.csproj" />
     <ProjectReference Include="..\..\Modules\User\User\User.csproj" />
+    <ProjectReference Include="..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
-﻿using Room.Data;
+﻿using MassTransit;
+using Room.Data;
 using Room.Rooms.Dtos;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace Room.Rooms.Features.UpdateRoom
 
     public record UpdateRoomResult(bool IsSuccess);
 
-    public class UpdateRoomHandler(RoomDbContext dbContext) : ICommandHandler<UpdateRoomCommand, UpdateRoomResult>
+    public class UpdateRoomHandler(RoomDbContext dbContext, IBus bus) : ICommandHandler<UpdateRoomCommand, UpdateRoomResult>
     {
         public async Task<UpdateRoomResult> Handle(UpdateRoomCommand request, CancellationToken cancellationToken)
         {
@@ -31,6 +33,20 @@ namespace Room.Rooms.Features.UpdateRoom
             dbContext.Rooms.Update(room);
 
             await dbContext.SaveChangesAsync(cancellationToken);
+
+            var integrationEvent = new RoomUpdatedEventIntegrationEvent
+            {
+                RoomId = room.Id,
+                Name = room.Name,
+                Type = room.Type,
+                Price = (decimal)room.Price,
+                Description = room.Description,
+                Capacity = room.Capacity,
+                UpdatedAt = (DateTime)room.LastModified,
+
+            };
+
+            await bus.Send(integrationEvent, cancellationToken);
 
             return new UpdateRoomResult(true);
         }

@@ -2,6 +2,7 @@ using Carter;
 using Serilog;
 using Shared.Exceptions.Handler;
 using Shared.Extensions;
+using Shared.Messaging.Extensions;
 
 namespace Api
 {
@@ -34,6 +35,9 @@ namespace Api
                 .AddOfferModule(builder.Configuration)
                 .AddNotificationModule(builder.Configuration)
                 .AddFeedbackModule(builder.Configuration);
+
+            builder.Services
+                .AddMassTransitWithAssemblies(builder.Configuration, roomAssembly, userAssembly, reservationAssembly);
 
             builder.Services
                 .AddExceptionHandler<CustomExceptionHandler>();
