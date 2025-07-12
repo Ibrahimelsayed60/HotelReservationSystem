@@ -18,6 +18,8 @@ namespace Reservation.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Reservations");
+
             base.OnModelCreating(modelBuilder);
         }
 

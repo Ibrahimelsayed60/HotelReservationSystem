@@ -14,7 +14,10 @@ namespace Reservation.Reservations.Models
         public Guid RoomId { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public ReservationStatus Status { get; set; }
+        public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+        public bool IsConfirmed { get; set; } = false;
+        public int NumberDays { get; set; }
+        public double TotalPrice { get; set; }
 
     }
 }
