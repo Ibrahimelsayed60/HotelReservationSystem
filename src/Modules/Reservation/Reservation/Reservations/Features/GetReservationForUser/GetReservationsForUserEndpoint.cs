@@ -33,7 +33,7 @@ namespace Reservation.Reservations.Features.GetReservationForUser
                 .Produces<GetReservationsForUserResponse>(StatusCodes.Status200OK)
                 .ProducesProblem(StatusCodes.Status400BadRequest)
                 .WithSummary("Get All Reservations For User")
-                .WithDescription("Get All Reservations")
+                .WithDescription("Get All Reservations For User")
                 ;
         }
     }
