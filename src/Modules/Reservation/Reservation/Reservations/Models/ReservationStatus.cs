@@ -11,6 +11,8 @@ namespace Reservation.Reservations.Models
 
         Pending,
         Confirmed,
+        CheckedIn,
+        CheckedOut,
         Cancelled,
         Completed
 
