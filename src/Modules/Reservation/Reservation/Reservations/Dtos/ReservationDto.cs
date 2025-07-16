@@ -26,7 +26,7 @@ namespace Reservation.Reservations.Dtos
 
         public bool IsConfirmed { get; set; } = false;
         public int NumberDays { get; set; }
-        public double TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
     }
 }
