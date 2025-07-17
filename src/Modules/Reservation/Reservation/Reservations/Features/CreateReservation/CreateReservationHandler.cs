@@ -1,7 +1,9 @@
-﻿using Reservation.Data;
+﻿using MassTransit;
+using Reservation.Data;
 using Reservation.Reservations.Dtos;
 using Reservation.Reservations.Models;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace Reservation.Reservations.Features.CreateReservation
 
     public record CreateReservationResult(Guid Id);
 
-    public class CreateReservationHandler(ReservationDbContext dbContext) : ICommandHandler<CreateReservationCommand, CreateReservationResult>
+    public class CreateReservationHandler(ReservationDbContext dbContext, IBus bus) : ICommandHandler<CreateReservationCommand, CreateReservationResult>
     {
         public async Task<CreateReservationResult> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
@@ -24,6 +26,14 @@ namespace Reservation.Reservations.Features.CreateReservation
             dbContext.Add(reservation);
 
             await dbContext.SaveChangesAsync();
+
+            await bus.Send(new RoomReservedIntegrationEvent
+            {
+                ReservationId = reservation.Id,
+                RoomId = reservation.RoomId,
+                CheckInDate = reservation.CheckInDate,
+                CheckOutDate = reservation.CheckOutDate,
+            }, cancellationToken);
 
             return new CreateReservationResult(reservation.Id);
         }
