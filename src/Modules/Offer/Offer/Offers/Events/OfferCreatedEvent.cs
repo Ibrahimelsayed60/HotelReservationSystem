@@ -8,5 +8,6 @@ using System.Threading.Tasks;
 
 namespace Offer.Offers.Events
 {
-    public record OfferCreatedEvent(OfferDto offer):IDomainEvent;
+    public record OfferCreatedEvent(OfferDto offer) : IDomainEvent;
+}
     
