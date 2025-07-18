@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.DDD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Offer.Offers.Models
 {
-    public class OfferRoom
+    public class OfferRoom:Entity<Guid>
     {
 
         public Guid OfferId { get; set; }
