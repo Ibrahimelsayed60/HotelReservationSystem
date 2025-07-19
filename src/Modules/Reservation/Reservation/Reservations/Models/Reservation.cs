@@ -27,6 +27,15 @@ namespace Reservation.Reservations.Models
         public int NumberDays { get; set; }
         public double TotalPrice { get; set; }
 
+        // Optional offer fields
+        public Guid? AppliedOfferId { get; private set; }
+        public double? AppliedDiscountPercentage { get; private set; }
+
+        public double TotalPriceIfOfferExistOrNot => AppliedDiscountPercentage.HasValue
+            ? TotalPrice - (TotalPrice * AppliedDiscountPercentage.Value / 100)
+            : TotalPrice;
+
+
 
         public static Reservation Create(Guid userId, Guid roomId, DateTime checkIn, DateTime checkOut,
                                      string name, string type, decimal price)
@@ -90,6 +99,12 @@ namespace Reservation.Reservations.Models
             Status = ReservationStatus.CheckedOut;
 
             AddDomainEvent(new ReservationCheckedOutEvent(Id, UserId, RoomId, DateTime.UtcNow));
+        }
+
+        public void ApplyOffer(Guid offerId, double discountPercentage)
+        {
+            AppliedOfferId = offerId;
+            AppliedDiscountPercentage = discountPercentage;
         }
 
     }
