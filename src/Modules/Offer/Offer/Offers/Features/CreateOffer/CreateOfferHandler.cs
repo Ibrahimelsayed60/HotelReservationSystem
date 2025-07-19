@@ -1,7 +1,9 @@
-﻿using Offer.Data;
+﻿using MassTransit;
+using Offer.Data;
 using Offer.Offers.Dtos;
 using Offer.Offers.Models;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace Offer.Offers.Features.CreateOffer
 
     public record CreateOfferResult(Guid offerId);
 
-    public class CreateOfferHandler(OfferDbContext dbContext) : ICommandHandler<CreateOfferCommand, CreateOfferResult>
+    public class CreateOfferHandler(OfferDbContext dbContext, IBus bus) : ICommandHandler<CreateOfferCommand, CreateOfferResult>
     {
         public async Task<CreateOfferResult> Handle(CreateOfferCommand request, CancellationToken cancellationToken)
         {
@@ -29,6 +31,17 @@ namespace Offer.Offers.Features.CreateOffer
             dbContext.Offers.Add(offer);
 
             await dbContext.SaveChangesAsync();
+
+            var integrationEvent = new OfferCreatedIntegrationEvent
+            {
+                OfferId = offer.Id,
+                Title = offer.Title,
+                DiscountPercentage = offer.DiscountPercentage,
+                StartDate = offer.StartDate,
+                EndDate = offer.EndDate,
+            };
+
+            await bus.Publish(integrationEvent);
 
             return new CreateOfferResult(offer.Id);
         }
