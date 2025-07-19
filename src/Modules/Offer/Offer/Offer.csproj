@@ -10,12 +10,4 @@
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Offers\Features\DeactivateOffer\" />
-    <Folder Include="Offers\Features\DeleteOffer\" />
-    <Folder Include="Offers\Features\ApplyOfferToRoom\" />
-    <Folder Include="Offers\Features\RemoveOfferFromRoom\" />
-    <Folder Include="Offers\Features\UpdateOffer\" />
-  </ItemGroup>
-
 </Project>
