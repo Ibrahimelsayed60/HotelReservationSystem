@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Offers\Features\CreateOffer\" />
-    <Folder Include="Offers\Features\ActivateOffer\" />
     <Folder Include="Offers\Features\DeactivateOffer\" />
     <Folder Include="Offers\Features\DeleteOffer\" />
     <Folder Include="Offers\Features\ApplyOfferToRoom\" />
