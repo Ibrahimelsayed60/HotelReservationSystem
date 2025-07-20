@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Offer.Data;
 using Offer.Offers.Features.ActivateOffer;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace Offer.Offers.Features.DeactivateOffer
 
     public record DeactivateOfferResult(bool IsSuccess);
 
-    public class DeactivateOfferHandler(OfferDbContext dbContext) : ICommandHandler<DeactivateOfferCommand, DeactivateOfferResult>
+    public class DeactivateOfferHandler(OfferDbContext dbContext, IBus bus) : ICommandHandler<DeactivateOfferCommand, DeactivateOfferResult>
     {
         public async Task<DeactivateOfferResult> Handle(DeactivateOfferCommand request, CancellationToken cancellationToken)
         {
@@ -31,6 +33,14 @@ namespace Offer.Offers.Features.DeactivateOffer
             dbContext.Offers.Update(offer);
 
             await dbContext.SaveChangesAsync();
+
+            var integrationEvent = new OfferDeactivatedIntegrationEvent { 
+                OfferId=offer.Id,
+                DeactivatedAt=DateTime.UtcNow
+                };
+
+            await bus.Publish(integrationEvent);
+
 
             return new DeactivateOfferResult(true);
         }
