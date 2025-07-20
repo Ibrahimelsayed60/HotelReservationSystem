@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Offer.Data;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace Offer.Offers.Features.ActivateOffer
 
     public record ActivateOfferResult(bool IsSuccess);
 
-    public class ActivateOfferHandler(OfferDbContext dbContext) : ICommandHandler<ActivateOfferCommand, ActivateOfferResult>
+    public class ActivateOfferHandler(OfferDbContext dbContext, IBus bus) : ICommandHandler<ActivateOfferCommand, ActivateOfferResult>
     {
         public async Task<ActivateOfferResult> Handle(ActivateOfferCommand request, CancellationToken cancellationToken)
         {
@@ -29,6 +31,18 @@ namespace Offer.Offers.Features.ActivateOffer
             dbContext.Offers.Update(offer);
 
             await dbContext.SaveChangesAsync();
+
+            var integrationEvent = new OfferActivatedIntegrationEvent 
+            {
+                OfferId=offer.Id,
+                Title=offer.Title,
+                DiscountPercentage=offer.DiscountPercentage,
+                StartDate=offer.StartDate,
+                EndDate=offer.EndDate,
+                RoomIds=offer.OfferRooms.Select(r => r.RoomId).ToList()
+            };
+
+            await bus.Publish(integrationEvent);
 
             return new ActivateOfferResult(true);
         }

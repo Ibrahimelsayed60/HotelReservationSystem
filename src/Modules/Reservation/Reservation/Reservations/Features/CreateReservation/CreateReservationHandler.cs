@@ -2,6 +2,7 @@
 using Reservation.Data;
 using Reservation.Reservations.Dtos;
 using Reservation.Reservations.Models;
+using Reservation.Reservations.Services;
 using Shared.Contracts.CQRS;
 using Shared.Messaging.Events;
 using System;
@@ -17,11 +18,28 @@ namespace Reservation.Reservations.Features.CreateReservation
 
     public record CreateReservationResult(Guid Id);
 
-    public class CreateReservationHandler(ReservationDbContext dbContext, IBus bus) : ICommandHandler<CreateReservationCommand, CreateReservationResult>
+    public class CreateReservationHandler(ReservationDbContext dbContext, IOfferCacheService offerCache, IBus bus) : ICommandHandler<CreateReservationCommand, CreateReservationResult>
     {
         public async Task<CreateReservationResult> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
             var reservation = CreateNewReservarion(request.reservation);
+
+            var offers = await offerCache.GetAllOffersAsync();
+
+            var bestOffer = offers
+                .Where(o =>
+                    o.StartDate <= request.reservation.CheckInDate &&
+                    o.EndDate >= request.reservation.CheckOutDate &&
+                    (!o.RoomIds.Any() || o.RoomIds.Contains(request.reservation.RoomId))
+                )
+                .OrderByDescending(o => o.DiscountPercentage)
+                .FirstOrDefault();
+
+            if (bestOffer != null)
+            {
+                reservation.ApplyOffer(bestOffer.OfferId, (double)bestOffer.DiscountPercentage);
+            }
+
 
             dbContext.Add(reservation);
 
