@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Reservation.Reservations.Services
 {
-    public class RedisOfferCacheService
+    public class RedisOfferCacheService:IOfferCacheService
     {
 
         private readonly IDistributedCache _cache;

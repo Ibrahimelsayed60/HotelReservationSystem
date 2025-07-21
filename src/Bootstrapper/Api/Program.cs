@@ -36,6 +36,11 @@ namespace Api
                 .AddNotificationModule(builder.Configuration)
                 .AddFeedbackModule(builder.Configuration);
 
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = builder.Configuration.GetConnectionString("Redis");
+            });
+
             builder.Services
                 .AddMassTransitWithAssemblies(builder.Configuration, roomAssembly, userAssembly, reservationAssembly);
 

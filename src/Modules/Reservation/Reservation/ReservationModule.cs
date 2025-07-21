@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Reservation.Data;
+using Reservation.Reservations.Services;
 using Shared.Data;
 using Shared.Data.Interceptors;
 using System;
@@ -23,6 +24,8 @@ namespace Reservation
 
             services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+            services.AddScoped<IOfferCacheService, RedisOfferCacheService>();
 
             services.AddDbContext<ReservationDbContext>((sp, options) =>
             {

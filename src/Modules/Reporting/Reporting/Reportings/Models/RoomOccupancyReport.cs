@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.DDD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reporting.Reportings.Models
 {
-    public class RoomOccupancyReport
+    public class RoomOccupancyReport: Entity<Guid>
     {
         public Guid RoomId { get; set; }
         public string RoomName { get; set; }
