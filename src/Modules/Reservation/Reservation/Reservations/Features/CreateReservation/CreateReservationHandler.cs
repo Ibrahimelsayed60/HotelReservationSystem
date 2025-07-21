@@ -53,6 +53,17 @@ namespace Reservation.Reservations.Features.CreateReservation
                 CheckOutDate = reservation.CheckOutDate,
             }, cancellationToken);
 
+            await bus.Send(new ReservationCreatedIntegrationEvent
+            {
+                ReservationId = reservation.Id,
+                UserId = request.reservation.UserId,
+                RoomId = request.reservation.RoomId,
+                CheckInDate = request.reservation.CheckInDate,
+                CheckOutDate = request.reservation.CheckOutDate,
+                BasePrice = (decimal)reservation.TotalPriceIfOfferExistOrNot,
+                CreatedAt = DateTime.UtcNow
+            }, cancellationToken);
+
             return new CreateReservationResult(reservation.Id);
         }
 

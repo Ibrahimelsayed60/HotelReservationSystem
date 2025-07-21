@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Reservation.Data;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace Reservation.Reservations.Features.ConfirmPaymentReservation
     public record ConfirmReservationPaymentCommand(Guid ReservationId, decimal Amount, string PaymentMethod):ICommand<ConfirmPaymentReservationResult>;
 
     public record ConfirmPaymentReservationResult(bool IsSuccess);
-    public class ConfirmPaymentReservationHandler(ReservationDbContext dbContext) : ICommandHandler<ConfirmReservationPaymentCommand, ConfirmPaymentReservationResult>
+    public class ConfirmPaymentReservationHandler(ReservationDbContext dbContext, IBus bus) : ICommandHandler<ConfirmReservationPaymentCommand, ConfirmPaymentReservationResult>
     {
         public async Task<ConfirmPaymentReservationResult> Handle(ConfirmReservationPaymentCommand request, CancellationToken cancellationToken)
         {
@@ -34,6 +36,14 @@ namespace Reservation.Reservations.Features.ConfirmPaymentReservation
 
 
             await dbContext.SaveChangesAsync(cancellationToken);
+
+            await bus.Send(new ReservationPaidIntegrationEvent
+            {
+                ReservationId = reservation.Id,
+                UserId = reservation.UserId,
+                TotalAmount = (decimal)reservation.TotalPriceIfOfferExistOrNot,
+                PaidAt = DateTime.UtcNow
+            }, cancellationToken);
 
             return new ConfirmPaymentReservationResult(true);
         }

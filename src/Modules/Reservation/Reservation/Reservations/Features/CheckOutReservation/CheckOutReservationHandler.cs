@@ -1,6 +1,8 @@
-﻿using Reservation.Data;
+﻿using MassTransit;
+using Reservation.Data;
 using Reservation.Reservations.Features.CheckInReservation;
 using Shared.Contracts.CQRS;
+using Shared.Messaging.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace Reservation.Reservations.Features.CheckOutReservation
 
     public record CheckOutReservationResult(bool IsSuccess);
 
-    public class CheckOutReservationHandler(ReservationDbContext dbContext) : ICommandHandler<CheckOutReservationCommand, CheckOutReservationResult>
+    public class CheckOutReservationHandler(ReservationDbContext dbContext, IBus bus) : ICommandHandler<CheckOutReservationCommand, CheckOutReservationResult>
     {
         public async Task<CheckOutReservationResult> Handle(CheckOutReservationCommand request, CancellationToken cancellationToken)
         {
@@ -32,6 +34,16 @@ namespace Reservation.Reservations.Features.CheckOutReservation
             }
 
             await dbContext.SaveChangesAsync(cancellationToken);
+
+            await bus.Send(new ReservationCheckedOutIntegrationEvent
+            {
+                ReservationId = reservation.Id,
+                RoomId = reservation.RoomId,
+                RoomName = reservation.RoomName,
+                CheckInDate = reservation.CheckInDate,
+                CheckOutDate = reservation.CheckOutDate,
+                TotalAmount = (decimal)reservation.TotalPriceIfOfferExistOrNot,
+            }, cancellationToken);
 
             return new CheckOutReservationResult(true);
         }
