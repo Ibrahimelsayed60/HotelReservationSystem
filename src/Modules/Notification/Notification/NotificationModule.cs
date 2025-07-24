@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shared.Data;
+using Notification.Notifications.Service;
 
 namespace Notification
 {
@@ -23,6 +24,8 @@ namespace Notification
 
             services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+            services.AddScoped<ISmtpService, SmtpService>();
 
             //services.AddScoped<IOfferCacheService, RedisOfferCacheService>();
 
