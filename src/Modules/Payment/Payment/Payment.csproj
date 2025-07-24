@@ -10,4 +10,12 @@
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Payments\EventHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xdot.Paymob.CashIn.DependencyInjection" Version="1.0.7" />
+  </ItemGroup>
+
 </Project>

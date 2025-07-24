@@ -10,6 +10,13 @@ namespace Payment.Payments.Models
 {
     public class PaymentTransaction:Aggregate<Guid>
     {
+        public PaymentTransaction(Guid reservationId, Guid userId, decimal amount)
+        {
+            ReservationId = reservationId;
+            UserId = userId;
+            Amount = amount;
+        }
+
         public Guid ReservationId { get; private set; }
         public Guid UserId { get; private set; }
         public decimal Amount { get; private set; }
